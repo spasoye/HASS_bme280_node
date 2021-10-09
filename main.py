@@ -13,6 +13,7 @@ relay = None
 sensor = None
 client = None
 node_name = None
+json = None
 
 def sensor_init():
     global sensor
@@ -46,7 +47,7 @@ def sensor_read(timer):
     print("sensor read:", temp,press,hum)
     
     try:
-        client.publish("node1/status", "online")
+        client.publish(node_name + "/status", "online")
         client.publish(node_name + "/sens", "{ \"temp\": " + str(temp) +", \"hum\": " + str(hum) +", \"press\": " + str(press) + "}")
     except Exception as e:
         print("fail while publishing:", e)
