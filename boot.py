@@ -5,5 +5,20 @@ import uos, machine
 #uos.dupterm(None, 1) # disable REPL on UART(0)
 import gc
 import webrepl
-webrepl.start()
+import setup
+import sys
+
+sys.path.append('/libs')
+sys.path.append('/')
+
+conf = setup.read_config("config.json")
+print("Config JSON:",conf)
+setup.network_connect(conf["ssid"], conf["pass"])
+
+#webrepl.start()
+
 gc.collect()
+
+# import app
+import app_bme
+app_bme.main()
