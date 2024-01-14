@@ -32,7 +32,7 @@ def sensor_init():
     pinSDA = machine.Pin(sda_pin)
     pinSCL = machine.Pin(scl_pin)
 
-    i2c = machine.I2C(scl=pinSCL, sda=pinSDA)
+    i2c = machine.SoftI2C(scl=pinSCL, sda=pinSDA)
 
     sensor = bme280.BME280(i2c=i2c)
     
